@@ -335,6 +335,26 @@
     color: #2d3748;
     letter-spacing: 2px;
   }
+  .version-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 0.75rem;
+    font-size: 11px;
+    color: #4a5568;
+    letter-spacing: 1px;
+  }
+  .refresh-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #4a5568;
+    font-size: 13px;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .refresh-btn:hover { color: #a0aec0; }
 
   @media (max-width: 480px) {
     .info-grid { grid-template-columns: 1fr; }
@@ -616,7 +636,14 @@
 
 </div><!-- /container -->
 
-<footer>OPERATION CAMOUFLAGE — 2025.09.12–13 — ONOMICHI</footer>
+<footer>
+  OPERATION CAMOUFLAGE — 2025.09.12–13 — ONOMICHI
+  <br>
+  <span class="version-bar">
+    <span id="version-label">v2026.06.21-1123</span>
+    <button class="refresh-btn" onclick="location.reload()" title="更新">&#x21BB;</button>
+  </span>
+</footer>
 
 </body>
 </html>
