@@ -339,10 +339,15 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: 0.75rem;
     font-size: 11px;
     color: #4a5568;
     letter-spacing: 1px;
+  }
+  .version-top {
+    background: #0a0d13;
+    border-bottom: 1px solid #1e2533;
+    padding: 6px 1rem;
+    text-align: right;
   }
   .refresh-btn {
     background: none;
@@ -363,6 +368,13 @@
 </style>
 </head>
 <body>
+
+<div class="version-top">
+  <span class="version-bar">
+    <span id="version-label">v2026.06.21-1125</span>
+    <button class="refresh-btn" onclick="location.reload()" title="更新">&#x21BB;</button>
+  </span>
+</div>
 
 <div class="hero">
   <p class="hero-code">Operation CAMOUFLAGE</p>
@@ -638,11 +650,6 @@
 
 <footer>
   OPERATION CAMOUFLAGE — 2025.09.12–13 — ONOMICHI
-  <br>
-  <span class="version-bar">
-    <span id="version-label">v2026.06.21-1123</span>
-    <button class="refresh-btn" onclick="location.reload()" title="更新">&#x21BB;</button>
-  </span>
 </footer>
 
 </body>
