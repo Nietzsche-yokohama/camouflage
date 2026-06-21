@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☕ CAMOUFLAGE〜週末弾丸尾道旅行〜</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0e1117;
+    color: #e2e8f0;
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  .hero {
+    background: #141820;
+    border-bottom: 1px solid #2d3748;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-code {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #718096;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .hero-title {
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    font-weight: 700;
+    color: #f7fafc;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 1.5rem;
+  }
+  .hero-date {
+    display: inline-block;
+    background: #1a202c;
+    border: 1px solid #2d3748;
+    border-radius: 4px;
+    padding: 0.5rem 1.25rem;
+    font-size: 14px;
+    color: #a0aec0;
+    letter-spacing: 1px;
+  }
+  .hero-concept {
+    margin-top: 2rem;
+    background: #1a202c;
+    border-left: 3px solid #c6a84b;
+    border-radius: 0 4px 4px 0;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-size: 14px;
+    color: #cbd5e0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-concept strong {
+    color: #c6a84b;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .section {
+    border-bottom: 1px solid #1e2533;
+    padding: 2rem 0;
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #4a5568;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: #4a5568;
+  }
+
+  h2.section-heading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 1rem;
+  }
+
+  /* メンバー */
+  .member-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .member-chip {
+    background: #1a202c;
+    border: 1px solid #2d3748;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+    color: #a0aec0;
+  }
+  .member-chip.core {
+    border-color: #c6a84b;
+    color: #c6a84b;
+  }
+  .member-note {
+    font-size: 12px;
+    color: #4a5568;
+    margin-top: 0.5rem;
+  }
+
+  /* 旅行概要 */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #1e2533;
+    border: 1px solid #1e2533;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .info-cell {
+    background: #141820;
+    padding: 0.75rem 1rem;
+  }
+  .info-label {
+    font-size: 11px;
+    color: #4a5568;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+  .info-value {
+    font-size: 14px;
+    color: #e2e8f0;
+  }
+  .todo {
+    color: #e67e22;
+    font-size: 12px;
+  }
+
+  /* スケジュール */
+  .day-block {
+    margin-bottom: 1.75rem;
+  }
+  .day-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #718096;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #1e2533;
+  }
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .schedule-table td {
+    padding: 6px 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #1a2030;
+  }
+  .schedule-table td:first-child {
+    color: #4a5568;
+    white-space: nowrap;
+    width: 70px;
+  }
+  .schedule-table td:nth-child(2) {
+    color: #a0aec0;
+    width: 120px;
+  }
+  .schedule-table td:nth-child(3) {
+    color: #cbd5e0;
+  }
+  .schedule-table td.highlight {
+    color: #c6a84b;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .badge-gold {
+    background: #2d2610;
+    color: #c6a84b;
+    border: 1px solid #c6a84b;
+  }
+  .badge-todo {
+    background: #2d1e0e;
+    color: #e67e22;
+    border: 1px solid #e67e22;
+  }
+
+  /* 散策マップ */
+  .spot-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .spot-list li {
+    background: #141820;
+    border: 1px solid #1e2533;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #a0aec0;
+  }
+  .spot-list li .spot-tag {
+    display: block;
+    font-size: 10px;
+    color: #4a5568;
+    margin-bottom: 2px;
+  }
+
+  /* 必携品 */
+  .kit-section {
+    margin-bottom: 1.5rem;
+  }
+  .kit-label {
+    font-size: 12px;
+    color: #c6a84b;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .checklist {
+    list-style: none;
+  }
+  .checklist li {
+    font-size: 13px;
+    color: #a0aec0;
+    padding: 3px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .checklist li::before {
+    content: '□';
+    position: absolute;
+    left: 0;
+    color: #4a5568;
+  }
+  .checklist li.done::before {
+    content: '☑';
+    color: #c6a84b;
+  }
+  .checklist li .note {
+    font-size: 11px;
+    color: #4a5568;
+    display: block;
+  }
+
+  /* 出費合算 */
+  .expense-note {
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 1rem;
+  }
+
+  /* テーマ曲 */
+  .theme-song-box {
+    background: #141820;
+    border: 1px solid #2d3748;
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .theme-song-box .song-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.25rem;
+  }
+  .theme-song-box .song-artist {
+    font-size: 12px;
+    color: #4a5568;
+    margin-bottom: 0.75rem;
+  }
+  .theme-song-box .song-lyrics {
+    font-size: 13px;
+    color: #718096;
+    line-height: 2;
+    white-space: pre-line;
+  }
+  .theme-song-box .song-lyrics .lyric-highlight {
+    color: #c6a84b;
+  }
+  .theme-todo {
+    font-size: 13px;
+    color: #4a5568;
+    font-style: italic;
+  }
+
+  .highlight-box {
+    background: #1a1a0e;
+    border: 1px solid #c6a84b;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+  }
+  .highlight-box p {
+    font-size: 13px;
+    color: #c6a84b;
+    line-height: 1.8;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    font-size: 11px;
+    color: #2d3748;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 480px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .spot-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="hero-code">Operation CAMOUFLAGE</p>
+  <h1 class="hero-title">☕ 週末弾丸尾道旅行 🥃</h1>
+  <p class="hero-sub">コーヒーのフリして、街に溶ける。</p>
+  <div class="hero-date">2025.09.12(土) — 09.13(日) ／ 1泊2日</div>
+
+  <div class="hero-concept">
+    <strong>作戦概要：</strong><br>
+    蓋付きのおしゃれなカップに、ウイスキー＋ソーダ。<br>
+    あたかもコーヒーを嗜む旅人のフリをして、坂と路地と海の街・尾道を自由に歩く。<br>
+    観光は従。酒飲み散策こそが主。<br>
+    前回・博多の魂を、広島で再演する。
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- メンバー -->
+  <div class="section">
+    <p class="section-title">Members</p>
+    <div class="member-list">
+      <span class="member-chip core">よこ</span>
+      <span class="member-chip core">はやて</span>
+      <span class="member-chip core">なおこ</span>
+      <span class="member-chip core">れい</span>
+      <span class="member-chip">募集中</span>
+    </div>
+  </div>
+
+  <!-- 旅行概要 -->
+  <div class="section">
+    <p class="section-title">Overview</p>
+    <div class="info-grid">
+      <div class="info-cell">
+        <p class="info-label">日程</p>
+        <p class="info-value">2025.09.12(土)〜09.13(日)</p>
+      </div>
+      <div class="info-cell">
+        <p class="info-label">行き先</p>
+        <p class="info-value">広島県 尾道市</p>
+      </div>
+      <div class="info-cell">
+        <p class="info-label">出発地</p>
+        <p class="info-value todo">📍 TODO（東京発想定）</p>
+      </div>
+      <div class="info-cell">
+        <p class="info-label">交通手段</p>
+        <p class="info-value">新幹線</p>
+      </div>
+      <div class="info-cell">
+        <p class="info-label">宿</p>
+        <p class="info-value todo">📍 TODO（尾道市街 or しまなみ）</p>
+      </div>
+      <div class="info-cell">
+        <p class="info-label">予算感</p>
+        <p class="info-value todo">📍 TODO（確定後記入）</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- スケジュール -->
+  <div class="section">
+    <p class="section-title">Schedule</p>
+
+    <div class="day-block">
+      <p class="day-label">DAY 0 ／ 前日（金 9/11）</p>
+      <table class="schedule-table">
+        <tr>
+          <td>前夜</td>
+          <td>各自</td>
+          <td>荷造り・持ち物確認</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="day-block">
+      <p class="day-label">DAY 1 ／ 1日目（土 9/12）</p>
+      <table class="schedule-table">
+        <tr>
+          <td class="todo">TODO</td>
+          <td>出発</td>
+          <td class="todo">📍 集合場所・時刻 TODO <span class="badge badge-todo">要確定</span></td>
+        </tr>
+        <tr>
+          <td class="todo">TODO</td>
+          <td>尾道着</td>
+          <td class="todo">📍 到着時刻 TODO</td>
+        </tr>
+        <tr>
+          <td>昼</td>
+          <td>仕込み開始</td>
+          <td class="highlight">コンビニでカップ・ウイスキー・ソーダ調達。偽装コーヒー完成 ☕🥃<span class="badge badge-gold">作戦開始</span></td>
+        </tr>
+        <tr>
+          <td>午後</td>
+          <td>坂道散策</td>
+          <td>千光寺公園方面→坂と路地を自由に歩く。急がない。</td>
+        </tr>
+        <tr>
+          <td>夕方</td>
+          <td>海岸線へ</td>
+          <td>渡し船 or 海岸線沿いをぶらつく。補充もここで。</td>
+        </tr>
+        <tr>
+          <td>夜</td>
+          <td>宿チェックイン</td>
+          <td class="todo">📍 宿名・住所 TODO</td>
+        </tr>
+        <tr>
+          <td>夜</td>
+          <td>夜の尾道</td>
+          <td>商店街のバー or 居酒屋 or 宿で飲む（自由行動可）</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="day-block">
+      <p class="day-label">DAY 2 ／ 2日目（日 9/13）</p>
+      <table class="schedule-table">
+        <tr>
+          <td>朝</td>
+          <td>チェックアウト</td>
+          <td>荷物をまとめる。二日酔いは作戦の証。</td>
+        </tr>
+        <tr>
+          <td>午前</td>
+          <td>田舎オプション</td>
+          <td>しまなみ海道方面へ足を伸ばす案（要検討）<span class="badge badge-todo">要相談</span></td>
+        </tr>
+        <tr>
+          <td>午後</td>
+          <td>再び散策</td>
+          <td>残りのウイスキーを消化しながら前日未踏エリアへ</td>
+        </tr>
+        <tr>
+          <td class="todo">TODO</td>
+          <td>帰路</td>
+          <td class="todo">📍 帰宅手段・時刻 TODO</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 散策ルートマップ -->
+  <div class="section">
+    <p class="section-title">Route Map</p>
+    <h2 class="section-heading">立ち寄り候補</h2>
+    <ul class="spot-list">
+      <li>
+        <span class="spot-tag">坂 / 眺望</span>
+        千光寺公園
+      </li>
+      <li>
+        <span class="spot-tag">坂 / 路地</span>
+        猫の細道
+      </li>
+      <li>
+        <span class="spot-tag">商店街</span>
+        本通り商店街
+      </li>
+      <li>
+        <span class="spot-tag">海 / 渡し</span>
+        尾道渡し船（対岸・向島）
+      </li>
+      <li>
+        <span class="spot-tag">古民家カフェ</span>
+        📍 TODO（現地調査）
+      </li>
+      <li>
+        <span class="spot-tag">田舎オプション</span>
+        しまなみ海道（因島 or 生口島）
+      </li>
+    </ul>
+    <p class="member-note" style="margin-top: 0.75rem;">※ルートの確定版は現地感で決める。計画しすぎない。</p>
+  </div>
+
+  <!-- 必携品 -->
+  <div class="section">
+    <p class="section-title">Kit List</p>
+
+    <div class="kit-section">
+      <p class="kit-label">必携品</p>
+      <ul class="checklist">
+        <li>ストロー or マドラー<span class="note">炭酸を静かに混ぜるため。</span></li>
+        <li>日焼け止め<span class="note">9月の坂道は容赦ない。</span></li>
+        <li>歩きやすい靴<span class="note">坂が多い。スニーカー推奨。</span></li>
+        <li>モバイルバッテリー</li>
+        <li>少額の現金<span class="note">古い店は現金のみ。</span></li>
+      </ul>
+    </div>
+
+    <div class="kit-section">
+      <p class="kit-label">酒の仕込み作戦</p>
+      <div class="highlight-box">
+        <p>
+          ① 現地コンビニでカップ・ウイスキー・ソーダを買う<br>
+          ② 人目のないところでカップに仕込む<br>
+          ③ 蓋をして、コーヒーを嗜む旅人を演じる<br>
+          ④ 坂を登りながら飲む。海を見ながら飲む。猫に会いながら飲む。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 出費合算 -->
+  <div class="section">
+    <p class="section-title">Expenses</p>
+    <p class="expense-note">📍 以下はすべて確定後に記入。割り勘ルールは旅後に精算。</p>
+    <ul class="checklist">
+      <li>交通費（往復）<span class="note todo">TODO</span></li>
+      <li>宿泊費<span class="note todo">TODO</span></li>
+      <li>食事費（共通分）<span class="note todo">TODO</span></li>
+      <li>ウイスキー・ソーダ代<span class="note">各自負担か共通か要確認</span></li>
+      <li>渡し船（尾道→向島）<span class="note">約 100円/回</span></li>
+      <li>しまなみオプション交通費<span class="note todo">TODO（行く場合のみ）</span></li>
+      <li>その他雑費<span class="note todo">TODO</span></li>
+    </ul>
+  </div>
+
+  <!-- テーマ曲 -->
+  <div class="section">
+    <p class="section-title">Theme Song</p>
+    <h2 class="section-heading">🎵 CAMOUFLAGE のテーマ曲</h2>
+
+    <div class="theme-song-box">
+      <p class="song-title">週末弾丸尾道旅行</p>
+      <p class="song-artist">CAMOUFLAGE Official Theme</p>
+      <p class="song-lyrics">
+<span class="lyric-highlight">[Chorus]</span>
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+
+<span class="lyric-highlight">[Verse]</span>
+卒業旅行だよ
+遊んで　はしゃいで　飲もう
+食ってみな　飛ぶぞ
+食ってみな　飛ぶぞ
+
+<span class="lyric-highlight">[Pre-chorus]</span>
+千光寺　坂道　尾道ラーメン
+渡し船　猫の細道
+あと何かな？　あとなんだろうな？
+
+<span class="lyric-highlight">[Chorus 2]</span>
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+
+<span class="lyric-highlight">[Build-up]</span>
+みんなで行くと楽しい
+みんなで行くと楽しい
+
+<span class="lyric-highlight">[Solo]</span>
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+
+<span class="lyric-highlight">[Chorus 3]</span>
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+週末弾丸尾道旅行〜
+      </p>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>OPERATION CAMOUFLAGE — 2025.09.12–13 — ONOMICHI</footer>
+
+</body>
+</html>
